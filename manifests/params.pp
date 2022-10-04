@@ -18,6 +18,7 @@ class opendkim::params {
   $trustanchorfile  = undef
   $senderheaders = undef
   $manage_private_keys = true
+  $manage_public_keys = true
   $alldomain = false
   $selector = undef
   $publickey = undef
