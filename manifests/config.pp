@@ -165,18 +165,19 @@ class opendkim::config inherits opendkim {
         }
       }
 
-      $selector = $key['selector']
-      $domain = $key['domain']
-      $publickey = $key['publickey']
+      if($opendkim::manage_public_keys == true) {
+        $selector = $key['selector']
+        $domain = $key['domain']
+        $publickey = $key['publickey']
 
-      file { "${opendkim::configdir}/keys/${key['domain']}/${key['selector']}.txt":
-        ensure  => 'file',
-        content => template('opendkim/public-rsa-key.erb'),
-        owner   => 'root',
-        group   => $opendkim::group,
-        mode    => '0640',
+        file { "${opendkim::configdir}/keys/${key['domain']}/${key['selector']}.txt":
+          ensure  => 'file',
+          content => template('opendkim/public-rsa-key.erb'),
+          owner   => 'root',
+          group   => $opendkim::group,
+          mode    => '0640',
+        }
       }
-
     }
 
   }

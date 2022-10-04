@@ -28,6 +28,7 @@ class opendkim(
   Optional[String]          $trustanchorfile      = $opendkim::params::trustanchorfile,
   Optional[Array]           $senderheaders        = $opendkim::params::senderheaders,
   Boolean                   $manage_private_keys  = $opendkim::params::manage_private_keys,
+  Boolean                   $manage_public_keys   = $opendkim::params::manage_public_keys,
   Boolean                   $alldomain            = $opendkim::params::alldomain,
   Optional[String]          $selector             = $opendkim::params::selector,
   Optional[String]          $publickey            = $opendkim::params::publickey,
@@ -38,8 +39,8 @@ class opendkim(
   Array[Struct[{
     domain         => String,
     selector       => String,
-    publickey      => String,
-    privatekey     => Variant[String,Deferred],
+    publickey      => Optional[String],
+    privatekey     => Optional[Variant[String,Deferred]],
     signingdomains => Array[String],
   }]]                       $keys                 = $opendkim::params::keys,
 
