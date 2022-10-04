@@ -149,7 +149,6 @@ class opendkim::config inherits opendkim {
     $opendkim::keys.each |Hash $key| {
       ensure_resource('file', "${opendkim::configdir}/keys/${key['domain']}", {
         ensure  => 'directory',
-        recurse => true,
         owner   => 'root',
         group   => $opendkim::group,
         mode    => '0710',
