@@ -151,7 +151,7 @@ class opendkim::config inherits opendkim {
         ensure  => 'directory',
         owner   => 'root',
         group   => $opendkim::group,
-        mode    => '0710',
+        mode    => '0750',
       })
 
       if($opendkim::manage_private_keys == true) {
