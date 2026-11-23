@@ -154,9 +154,9 @@ class opendkim::config {
           'selector'          => $opendkim::selector,
           'domain'            => 'all',
           'publickey'         => $opendkim::publickey,
-          'publickeyextended' => pick_default($opendkim::publickeyextended, undef),
-          'key_algorithm'     => pick_default($opendkim::key_algorithm, undef),
-          'hash_algorithms'   => pick_default($opendkim::hash_algorithms, undef),
+          'publickeyextended' => stdlib::pick_default($opendkim::publickeyextended, undef),
+          'key_algorithm'     => stdlib::pick_default($opendkim::key_algorithm, undef),
+          'hash_algorithms'   => stdlib::pick_default($opendkim::hash_algorithms, undef),
       }),
       owner   => 'root',
       group   => $opendkim::group,
@@ -185,7 +185,7 @@ class opendkim::config {
     }
 
     $opendkim::keys.each |Hash $key| {
-      ensure_resource('file', "${opendkim::configdir}/keys/${key['domain']}", {
+      stdlib::ensure_resource('file', "${opendkim::configdir}/keys/${key['domain']}", {
           ensure  => directory,
           recurse => true,
           owner   => $opendkim::user,
