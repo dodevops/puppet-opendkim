@@ -185,7 +185,7 @@ class opendkim::config {
     }
 
     $opendkim::keys.each |Hash $key| {
-      ensure_resource('file', "${opendkim::configdir}/keys/${key['domain']}", {
+      stdlib::ensure_resource('file', "${opendkim::configdir}/keys/${key['domain']}", {
           ensure  => directory,
           recurse => true,
           owner   => $opendkim::user,
